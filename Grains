@@ -1,0 +1,97 @@
+//Nathaniel D. Smith
+
+<?php
+
+   display_form();
+
+ if ( isset($_POST['hgt']))
+        calc ();
+
+function calc()
+{
+
+        // read width
+         $width = isset($_POST['wdth']) ? $_POST['wdth'] : "";
+
+        // read length
+         $length = isset($_POST['len'])? $_POST['len'] : "";
+
+        $height = isset($_POST['hgt'])? $_POST['hgt'] : "";
+
+        $length2 = (float) $length;
+        $length3 = (integer) $length;
+        $lengthdiff = $length2 - $length3;
+
+
+         $width2 = (float) $width;
+        $width3 = (integer) $width;
+        $widthdiff = $width2 - $width3;
+
+         $height2 = (float) $height;
+        $height3 = (integer) $height;
+        $heightdiff = $height2 - $height3;
+
+
+        //Set up parameters
+ if ($height < 3 || $height > 6 || $height == "" || $heightdiff > 0 ){
+        echo "Invalid height! Enter an integer between 3 and 6\n";
+
+  } elseif ($width < 5  || $width > 15 || $width == " "  || $widthdiff > 0 ) {
+        echo "Invalid width! Enter an integer between 5 and 15\n";
+
+ } elseif ($length <20  || $length > 50 || $length == "" ||  $lengthdiff > 0) {
+        echo "Invalid length! Enter an integer between 20 and 50\n";
+
+ } else {
+
+        $grains = 1 + pow(2, 63);
+ $grainweight = ( $grains * .05); //calc in grams
+
+        $grainvolume = ($grains * .02);
+
+        $swimmingpools = $grainvolume / ($length * $height * $width);
+
+        printf("The Number of grains paid: %.0f </br>" ,  $grains);
+        printf("The total weight of grain: %.0f </br> " , $grainweight);
+        printf("The total volume of grain  %.0f </br> " , $grainvolume);
+        printf("The total number of swimming pools:  %.0f </br> " , $swimmingpools);
+
+}//end if else if
+
+
+}
+
+
+function display_form() {
+ // display the HTML form
+?>
+ <html>
+<body>
+<form method='post' action='' >
+<h2>Number of Swimming Pools Needed</h2>
+<p>
+There is a popular myth about the man who invented chess. The local ruler was so pleased with the
+invention that he offered the inventor a great reward in gold. The inventor suggested an alternative
+reward: he would get one
+grain of wheat on the first square of the chess board, two grains on the
+second square, fourth on the third, eight on the fourth, etc., doubling the number of grains each time.
+The ruler saw that this must be a much better deal for him, and he accepted.
+The board has 64 squares
+</p>
+
+<p>Enter the height of the swimming pool between 3 and 6 meters : <input type='text' name='hgt' id='hgt' /></p>
+<p>Enter the width of the swimming pool between 5 and 15 meters: <input type='text' name='wdth' id='wdth' /></p>
+<p>Enter the length of the swimming pool between 20 and 50 meters : <input type='text' name='len' id='len' /></p>
+
+
+<p><input type='submit' value='Check' />
+   <input type='reset' value='Clear' /></p>
+
+
+</form>
+</body>
+</html>
+
+      <?php
+}
+?>
