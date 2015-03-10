@@ -1,0 +1,66 @@
+//Nathaniel D. Smith
+<?php
+
+    display_form();
+
+ if ( isset($_POST['number'])){
+ // Read input and validate data
+
+
+    // read input
+    $n = isset($_POST['number'])? $_POST['number'] : "";
+
+
+/* Validate the input
+  number must be between 2 and 1000
+*/
+    $num_1 = (float) $n;
+    $num_2 = (integer) $n;
+    $num = $num_1 - $num_2;
+    if ($n <2 || $n == "" || $num > 0 || $n > 1000 ){
+        echo "Invalid input! Enter a valid integer\n";
+    } else {    // check for a prime number
+        $mode = checkPrime($n);
+        // if n is a prime number then checkPrime() returns true
+        // Else, it returns false
+        if ($mode)
+                echo "$n is a prime number\n";
+        else
+                echo "$n is not a prime number\n";
+   } // end if
+} // end first if
+// end main
+
+function checkPrime($thisnumber) {
+        if ($thisnumber == 2 || $thisnumber == 3)
+                return true;
+        for ($i=2; $i <= sqrt($thisnumber); $i++) {
+                if ($thisnumber % $i == 0)
+                        return false; // it is not a prime
+       }  // end for
+       // if it reaches this far then it must be a prime
+       return true;
+}
+
+
+function display_form() {
+ // display the HTML form
+?>
+ <html>
+<body>
+<form method='post' action='' >
+<h2>Check Prime numbers</h2>
+<p>Enter an integer between 2 and 1000
+  <input type='text' name='number' /></p>
+<p><input type='submit' value='Check' />
+   <input type='reset' value='Clear' /></p>
+
+
+</form>
+</body>
+</html>
+
+
+<?php
+}
+?>
