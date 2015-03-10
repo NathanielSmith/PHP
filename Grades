@@ -1,0 +1,68 @@
+//Nathaniel D. Smith
+
+<?php
+
+if ( isset($_POST['p'])){
+
+        calc_points();
+        }else{
+
+        display_form();
+        }
+
+        function calc_points()
+        {
+
+
+        $points = $_POST['p'];
+
+
+                if ( $points > 300 || $points < 0 || $points == "")
+                {
+                          echo ("Invalid input");
+                          display_form();
+                }
+                else
+                {
+                          if ($points >= 270)
+                          {
+                                echo("Grade of A");
+                                        display_form();
+                          }
+                          else if ($points >= 240)
+                          {
+                                echo("Grade of B");
+                                        display_form();
+                          }
+                          else if ($points >= 210)
+                          {
+                                echo("Grade of C");
+                                        display_form();
+                          }
+                          else if ($points >= 180)
+                          {
+                                echo("Grade of D");
+                                        display_form();
+                          }
+                          else
+                          {
+                                echo("Grade of F");
+       display_form();
+                          }
+                }
+        }
+
+function display_form()
+{
+        ?>
+
+<html>
+<body>
+<form method='post' action='Grades.php' >
+
+<p>Enter a number between 0 and 300: <input type='text' name='p' /></p>
+<p><input type='submit' value='Calculate Points' />
+   <input type='reset' value='Clear' /></p>
+
+</form>
+</body>
